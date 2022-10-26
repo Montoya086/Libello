@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.libello.R
 import com.example.libello.databinding.FragmentNoteListBinding
 
@@ -16,7 +17,15 @@ class NoteListFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_note_list, container, false)
-        return view
+        _binding = FragmentNoteListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.addNote.setOnClickListener{
+            val action = NoteListFragmentDirections.actionNoteListFragmentToAddNoteFragment()
+            this.findNavController().navigate(action)
+        }
     }
 }

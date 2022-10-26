@@ -6,29 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.libello.databinding.FragmentLoginBinding
+import com.example.libello.databinding.FragmentAddNoteBinding
 
-class LoginFragment : Fragment() {
-    private var _binding: FragmentLoginBinding? = null
+
+class AddNoteFragment : Fragment(){
+    private var _binding: FragmentAddNoteBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentAddNoteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.loginButton.setOnClickListener{
-            val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment()
-            this.findNavController().navigate(action)
-        }
-        binding.signinButton.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToSigninFragment()
+        binding.createNote.setOnClickListener{
+            val action = AddNoteFragmentDirections.actionAddNoteFragmentToEditNoteFragment()
             this.findNavController().navigate(action)
         }
     }
