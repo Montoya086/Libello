@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.example.libello.databinding.FragmentEditNoteBinding
 
 class EditNoteFragment : Fragment() {
+    private val args by navArgs<EditNoteFragmentArgs>()
     private var _binding: FragmentEditNoteBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -17,5 +19,10 @@ class EditNoteFragment : Fragment() {
     ): View? {
         _binding = FragmentEditNoteBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.noteNameText.text = "Content of "+args.noteName
     }
 }

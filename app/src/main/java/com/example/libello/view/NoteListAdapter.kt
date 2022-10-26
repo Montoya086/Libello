@@ -22,7 +22,7 @@ class NoteListAdapter(private val noteList: List<Note>) : RecyclerView.Adapter<N
         holder.binding.noteName.text = note.name
         holder.binding.noteDesc.text = note.desc
         holder.itemView.setOnClickListener {
-            val action = NoteListFragmentDirections.actionNoteListFragmentToEditNoteFragment()
+            val action = NoteListFragmentDirections.actionNoteListFragmentToEditNoteFragment(note.name)
             holder.itemView.findNavController().navigate(action)
         }
     }
