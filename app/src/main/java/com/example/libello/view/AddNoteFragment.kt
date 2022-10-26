@@ -24,7 +24,7 @@ class AddNoteFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.createNote.setOnClickListener{
-            val action = AddNoteFragmentDirections.actionAddNoteFragmentToEditNoteFragment()
+            val action = AddNoteFragmentDirections.actionAddNoteFragmentToNoteListFragment()
             this.findNavController().navigate(action)
         }
     }

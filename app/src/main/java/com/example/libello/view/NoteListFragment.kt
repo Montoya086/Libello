@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.libello.R
 import com.example.libello.databinding.FragmentNoteListBinding
 
@@ -27,5 +29,9 @@ class NoteListFragment : Fragment(){
             val action = NoteListFragmentDirections.actionNoteListFragmentToAddNoteFragment()
             this.findNavController().navigate(action)
         }
+        val recyclerView = view.findViewById<RecyclerView>(R.id.noteListRv)
+        recyclerView.layoutManager = LinearLayoutManager(view.context);
+        recyclerView.adapter = NoteListAdapter()
+        recyclerView.setHasFixedSize(true)
     }
 }
