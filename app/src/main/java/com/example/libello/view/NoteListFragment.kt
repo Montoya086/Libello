@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.libello.R
 import com.example.libello.databinding.FragmentNoteListBinding
+import com.example.libello.temp.NoteList
 
 class NoteListFragment : Fragment(){
     private var _binding: FragmentNoteListBinding? = null
@@ -29,9 +30,10 @@ class NoteListFragment : Fragment(){
             val action = NoteListFragmentDirections.actionNoteListFragmentToAddNoteFragment()
             this.findNavController().navigate(action)
         }
+        val noteList = NoteList().getNotes()
         val recyclerView = view.findViewById<RecyclerView>(R.id.noteListRv)
         recyclerView.layoutManager = LinearLayoutManager(view.context);
-        recyclerView.adapter = NoteListAdapter()
+        recyclerView.adapter = NoteListAdapter(noteList)
         recyclerView.setHasFixedSize(true)
     }
 }
