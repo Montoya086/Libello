@@ -121,7 +121,6 @@
             \nconsectetur adipiscing elit, sed do eiusmod
             \ntempor incididunt ut labore et dolore magna
             \naliqua. Neque ornare aenean euismod elementum."
-            android:inputType="textPassword"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.51"
