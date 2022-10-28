@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="143dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="42dp"
         android:layout_marginEnd="143dp"
         android:text="NUEVA NOTA"
         android:textColor="#000000"
@@ -25,7 +25,7 @@
         android:layout_width="345dp"
         android:layout_height="560dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:background="#34ACACAC"
@@ -97,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
             android:height="60dp"
@@ -139,22 +139,25 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewType">
 
             <RadioButton
-                android:id="@+id/radioButton5"
+                android:id="@+id/radioButton1"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:text="RadioButton" />
+                android:text="Supermercado"
+                android:textColorLink="#F22C2C"/>
 
             <RadioButton
-                android:id="@+id/radioButton6"
+                android:id="@+id/radioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:text="RadioButton" />
+                android:text="Finanzas"
+                android:textColorLink="#F22C2C" />
 
             <RadioButton
-                android:id="@+id/radioButton7"
+                android:id="@+id/radioButton3"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:text="RadioButton" />
+                android:text="Personal"
+                android:textColorLink="#F22C2C"/>
         </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
