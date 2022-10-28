@@ -142,13 +142,15 @@
                 android:id="@+id/radioButton1"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
+                android:buttonTint="#F22C2C"
                 android:text="Supermercado"
-                android:textColorLink="#F22C2C"/>
+                android:textColorLink="#F22C2C" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
+                android:buttonTint="#F22C2C"
                 android:text="Finanzas"
                 android:textColorLink="#F22C2C" />
 
@@ -156,8 +158,11 @@
                 android:id="@+id/radioButton3"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
+                android:buttonTint="#F22C2C"
                 android:text="Personal"
-                android:textColorLink="#F22C2C"/>
+                android:textColorHighlight="#F22C2C"
+                android:textColorLink="#F22C2C"
+                app:useMaterialThemeColors="false" />
         </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
