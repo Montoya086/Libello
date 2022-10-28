@@ -19,8 +19,9 @@ class NoteListAdapter(private val noteList: List<Note>) : RecyclerView.Adapter<N
 
     override fun onBindViewHolder(holder: NoteListHolder, position: Int) {
         val note = noteList[position]
-        holder.binding.noteName.text = note.name
-        holder.binding.noteDesc.text = note.desc
+        holder.binding.textViewTitle.text = note.name
+        holder.binding.textViewDescription.text = note.desc
+        holder.binding.textViewDescriptionTitle.text = "Descripción de la nota "+note.name
         holder.itemView.setOnClickListener {
             val action = NoteListFragmentDirections.actionNoteListFragmentToEditNoteFragment(note.name)
             holder.itemView.findNavController().navigate(action)
