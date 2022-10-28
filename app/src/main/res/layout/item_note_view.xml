@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp">
+    android:layout_marginBottom="16dp"
+    app:cardBackgroundColor="#FBFBFB"
+    app:strokeColor="#F22C2C"
+    app:strokeWidth="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E6E5E5"
-        android:layout_marginBottom="16dp">
+
+        android:background="#F3F3F3">
 
         <TextView
             android:id="@+id/textViewTitle"
@@ -18,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="Titulo de la nota"
             android:textColor="#000000"
             android:textSize="34sp"
@@ -32,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="52dp"
+            android:layout_marginEnd="16dp"
             android:text="Descripción de la nota"
             android:textColor="#000000"
             android:textSize="24sp"
@@ -46,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="Ejemplo"
             android:textColor="#000000"
@@ -57,4 +63,4 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionTitle"
             tools:text="Lorem ipsum dolor sit amet. Et consequuntur eaque et sapiente accusantium ut dolore rerum et voluptates molestias. Qui nisi dolor 33 molestias officiis in assumenda commodi ut omnis nesciunt qui ipsam soluta et atque dolor sed maxime beatae!" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
