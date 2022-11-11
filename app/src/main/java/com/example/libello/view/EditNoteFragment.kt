@@ -36,7 +36,7 @@ class EditNoteFragment : Fragment() {
         val textListener = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 text = snapshot.child("2").child("Content").value.toString()
-                binding.noteNameText.text = text
+                binding.editTextTextMultiLine.setText(text)
             }
 
             override fun onCancelled(error: DatabaseError) {
