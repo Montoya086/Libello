@@ -48,7 +48,8 @@ class EditNoteFragment : Fragment() {
 
         // TO SAVE NEW DATA
         binding.floatingActionButton.setOnClickListener{
-
+            text = binding.editTextTextMultiLine.text.toString()
+            database.child("2").child("Content").setValue(text)
         }
     }
 }
