@@ -14,7 +14,6 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 class EditNoteFragment : Fragment() {
-    private val args by navArgs<EditNoteFragmentArgs>()
     private var _binding: FragmentEditNoteBinding? = null
     private val binding get() = _binding!!
     private lateinit var database: DatabaseReference

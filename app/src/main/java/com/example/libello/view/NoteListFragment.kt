@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.libello.R
@@ -13,6 +14,7 @@ import com.example.libello.databinding.FragmentNoteListBinding
 import com.example.libello.temp.NoteList
 
 class NoteListFragment : Fragment(){
+    private val args by navArgs<NoteListFragmentArgs>()
     private var _binding: FragmentNoteListBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -27,7 +29,7 @@ class NoteListFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.addNote.setOnClickListener{
-            val action = NoteListFragmentDirections.actionNoteListFragmentToAddNoteFragment()
+            val action = NoteListFragmentDirections.actionNoteListFragmentToAddNoteFragment(args.user!!)
             this.findNavController().navigate(action)
         }
         val noteList = NoteList().getNotes()

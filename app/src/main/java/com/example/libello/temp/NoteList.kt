@@ -1,8 +1,11 @@
 package com.example.libello.temp
 
-class NoteList {
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
+class NoteList() {
     fun getNotes(): List<Note>{
+
         return listOf(
             Note("Nota 1", "Descripción de la nota 1"),
             Note("Nota 2", "Descripción de la nota 2"),

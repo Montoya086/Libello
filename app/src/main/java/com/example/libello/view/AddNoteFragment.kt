@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.libello.databinding.FragmentAddNoteBinding
 
 
 class AddNoteFragment : Fragment(){
+    private val args by navArgs<AddNoteFragmentArgs>()
     private var _binding: FragmentAddNoteBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -24,7 +26,7 @@ class AddNoteFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.createNote.setOnClickListener{
-            val action = AddNoteFragmentDirections.actionAddNoteFragmentToNoteListFragment()
+            val action = AddNoteFragmentDirections.actionAddNoteFragmentToNoteListFragment(args.user)
             this.findNavController().navigate(action)
         }
     }
