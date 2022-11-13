@@ -20,7 +20,7 @@ class NoteListAdapter(private val noteList: MutableList<Note>) : RecyclerView.Ad
         val note = noteList[position]
         holder.binding.textViewTitle.text = note.name
         holder.binding.textViewDescription.text = note.desc
-        holder.binding.textViewDescriptionTitle.text = "Descripción de la nota "+note.name
+        holder.binding.textViewDescriptionTitle.text = "Descripción de la nota \""+note.name+"\":"
         holder.itemView.setOnClickListener {
             val action = NoteListFragmentDirections.actionNoteListFragmentToEditNoteFragment(note.name)
             holder.itemView.findNavController().navigate(action)

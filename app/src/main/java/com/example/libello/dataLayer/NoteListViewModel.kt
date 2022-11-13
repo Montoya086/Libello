@@ -22,7 +22,7 @@ class NoteListViewModel(): ViewModel() {
                 Log.i("PRUEBA18", "Entro al OnDataChange")
                 text = snapshot.child("2").child("Content").value.toString()
                 Log.i("PRUEBA20", text)
-                temp.add(Note(text, text))
+                temp.add(Note(snapshot.child("2").child("Title").value.toString(), snapshot.child("2").child("Desc").value.toString()))
                 notes.value =temp
             }
 
