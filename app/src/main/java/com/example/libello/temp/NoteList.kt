@@ -18,7 +18,7 @@ class NoteList(myUser: User) {
                 Log.i("PRUEBA18", "Entro al OnDataChange")
                 text = snapshot.child("2").child("Content").value.toString()
                 Log.i("PRUEBA20", text)
-                notes.add(Note(text, text))
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -26,6 +26,7 @@ class NoteList(myUser: User) {
             }
 
         }
+        notes.add(Note(text, text))
         Log.i("PRUEBA28", text)
         database.addValueEventListener(textListener)
         Log.i("PRUEBA30", text)
