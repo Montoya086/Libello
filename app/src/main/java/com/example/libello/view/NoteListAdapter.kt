@@ -2,12 +2,11 @@ package com.example.libello.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.libello.databinding.ItemNoteViewBinding
-import com.example.libello.temp.Note
+import com.example.libello.dataLayer.Note
 
-class NoteListAdapter(private val noteList: List<Note>) : RecyclerView.Adapter<NoteListAdapter.NoteListHolder>(){
+class NoteListAdapter(private val noteList: MutableList<Note>) : RecyclerView.Adapter<NoteListAdapter.NoteListHolder>(){
     inner class NoteListHolder(val binding: ItemNoteViewBinding) : RecyclerView.ViewHolder(binding.root){
 
     }

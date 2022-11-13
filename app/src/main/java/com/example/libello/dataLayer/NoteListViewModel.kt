@@ -1,24 +1,29 @@
-package com.example.libello.temp
+package com.example.libello.dataLayer
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.libello.network.User
 import com.google.firebase.database.*
 
-class NoteList(myUser: User) {
-    private lateinit var database: DatabaseReference
-    private val mail = myUser.getMail()!!
-    private var text: String = "Mondongo"
+class NoteListViewModel(): ViewModel() {
 
-    fun getNotes(): List<Note>{
-        val notes = mutableListOf<Note>()
+    val notes:MutableLiveData<MutableList<Note>> by lazy{
+        MutableLiveData<MutableList<Note>>()
+    }
+    fun getNotes(myUser: User){
+        lateinit var database: DatabaseReference
+        var text = ""
+        val mail = myUser.getMail()!!
         database = FirebaseDatabase.getInstance().getReference("Notes")
-
-        val textListener = object : ValueEventListener{
+        val textListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val temp=mutableListOf<Note>()
                 Log.i("PRUEBA18", "Entro al OnDataChange")
                 text = snapshot.child("2").child("Content").value.toString()
                 Log.i("PRUEBA20", text)
-
+                temp.add(Note(text, text))
+                notes.value =temp
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -26,10 +31,9 @@ class NoteList(myUser: User) {
             }
 
         }
-        notes.add(Note(text, text))
+
         Log.i("PRUEBA28", text)
         database.addValueEventListener(textListener)
         Log.i("PRUEBA30", text)
-        return notes.toList()
     }
 }
