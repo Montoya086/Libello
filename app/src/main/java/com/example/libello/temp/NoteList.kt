@@ -1,31 +1,34 @@
 package com.example.libello.temp
 
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import android.util.Log
+import com.example.libello.network.User
+import com.google.firebase.database.*
 
-class NoteList() {
+class NoteList(myUser: User) {
+    private lateinit var database: DatabaseReference
+    private val mail = myUser.getMail()!!
+    private var text: String = "Mondongo"
+
     fun getNotes(): List<Note>{
+        val notes = mutableListOf<Note>()
+        database = FirebaseDatabase.getInstance().getReference("Notes")
 
-        return listOf(
-            Note("Nota 1", "Descripción de la nota 1"),
-            Note("Nota 2", "Descripción de la nota 2"),
-            Note("Nota 3", "Descripción de la nota 3"),
-            Note("Nota 4", "Descripción de la nota 4"),
-            Note("Nota 5", "Descripción de la nota 5"),
-            Note("Nota 6", "Descripción de la nota 6"),
-            Note("Nota 7", "Descripción de la nota 7"),
-            Note("Nota 8", "Descripción de la nota 8"),
-            Note("Nota 9", "Descripción de la nota 9"),
-            Note("Nota 10", "Descripción de la nota 10"),
-            Note("Nota 11", "Descripción de la nota 11"),
-            Note("Nota 12", "Descripción de la nota 12"),
-            Note("Nota 13", "Descripción de la nota 13"),
-            Note("Nota 14", "Descripción de la nota 14"),
-            Note("Nota 15", "Descripción de la nota 15"),
-            Note("Nota 16", "Descripción de la nota 16"),
-            Note("Nota 17", "Descripción de la nota 17"),
-            Note("Nota 18", "Descripción de la nota 18"),
-            Note("Nota 19", "Descripción de la nota 19"),
-        )
+        val textListener = object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.i("PRUEBA18", "Entro al OnDataChange")
+                text = snapshot.child("2").child("Content").value.toString()
+                Log.i("PRUEBA20", text)
+                notes.add(Note(text, text))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        Log.i("PRUEBA28", text)
+        database.addValueEventListener(textListener)
+        Log.i("PRUEBA30", text)
+        return notes.toList()
     }
 }

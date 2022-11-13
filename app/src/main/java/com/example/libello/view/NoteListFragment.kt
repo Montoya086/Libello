@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.libello.R
 import com.example.libello.databinding.FragmentNoteListBinding
 import com.example.libello.temp.NoteList
+import com.google.firebase.database.DatabaseReference
 
 class NoteListFragment : Fragment(){
     private val args by navArgs<NoteListFragmentArgs>()
@@ -32,7 +33,7 @@ class NoteListFragment : Fragment(){
             val action = NoteListFragmentDirections.actionNoteListFragmentToAddNoteFragment(args.user!!)
             this.findNavController().navigate(action)
         }
-        val noteList = NoteList().getNotes()
+        val noteList = NoteList(args.user!!).getNotes()
         val recyclerView = view.findViewById<RecyclerView>(R.id.noteListRv)
         recyclerView.layoutManager = LinearLayoutManager(view.context);
         recyclerView.adapter = NoteListAdapter(noteList)

@@ -51,12 +51,10 @@ class SigninFragment : Fragment(){
                         database.child(splitMail).push()
                         database.child(splitMail).child("Mail").setValue(mail)
                         database.child(splitMail).child("Password").setValue(password)
-//                        database.child(splitMail).push().child("Mail").push().setValue(mail)
-//                        database.child(splitMail).child("Password").push().setValue(password)
-                        val action = SigninFragmentDirections.actionSigninFragmentToNoteListFragment(User(mail, password))
+                        val action = SigninFragmentDirections.actionSigninFragmentToNoteListFragment(User(splitMail, password))
                         this.findNavController().navigate(action)
                     }else{
-                        Toast.makeText(this.context, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this.context, "Este correo ya esta en uso", Toast.LENGTH_SHORT).show()
                     }
                 }
 

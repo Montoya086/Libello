@@ -29,4 +29,7 @@ class User(private val mail: String?, private val password: String?): Parcelable
         }
     }
 
+    fun getMail(): String? {
+        return mail
+    }
 }
