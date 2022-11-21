@@ -44,10 +44,9 @@ class NoteListAdapter(private val noteList: MutableList<Note>, val c: Context, v
                 when (it.itemId){
                     R.id.deleteElement->{
                         database.child("Users").child(user.getMail()!!).child("SharedKeys").get().addOnSuccessListener {
-                            val nKeys = it.childrenCount
-                            for (i in 0 until nKeys) {
-                                if(it.child(i.toString()).value.toString()==note.id) {
-                                    database.child("Users").child(user.getMail()!!).child("SharedKeys").child(i.toString()).removeValue()
+                            for (key in it.children) {
+                                if(it.child(key.value.toString()).value.toString()==note.id) {
+                                    database.child("Users").child(user.getMail()!!).child("SharedKeys").child(key.value.toString()).removeValue()
                                 }
                             }
                         }

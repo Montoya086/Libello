@@ -61,7 +61,7 @@ class AddNoteFragment : Fragment(){
                 database_users.child(user.getMail()!!).child("SharedKeys").get()
                     .addOnSuccessListener {
                         nKeys = it.childrenCount.toInt()
-                        database_users.child(user.getMail()!!).child("SharedKeys").child(nKeys.toString()).setValue(current_id.toString())
+                        database_users.child(user.getMail()!!).child("SharedKeys").child(current_id.toString()).setValue(current_id.toString())
                     }
 
                 val action = AddNoteFragmentDirections.actionAddNoteFragmentToNoteListFragment(user)
