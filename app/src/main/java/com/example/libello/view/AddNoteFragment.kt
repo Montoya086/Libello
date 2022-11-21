@@ -43,25 +43,27 @@ class AddNoteFragment : Fragment(){
             val title = binding.editTextTitle.text.toString()
             val desc = binding.editTextDescription.text.toString()
             if(title.isNotEmpty() && desc.isNotEmpty()) {
-                var nKeys = 0
                 var current_id = 0
+
+                //UPDATES CURRENT ID
                 database_data.child("CurrentID").get().addOnSuccessListener {
                     current_id = it.value.toString().toInt() + 1
                     database_data.child("CurrentID").setValue((current_id))
                 }
 
+                //UPDATES NOTES
                 database_notes.get().addOnSuccessListener {
                     database_notes.child(current_id.toString()).push()
                     database_notes.child(current_id.toString()).child("Content").setValue("")
                     database_notes.child(current_id.toString()).child("Desc").setValue(desc)
                     database_notes.child(current_id.toString()).child("Title").setValue(title)
                     database_notes.child(current_id.toString()).child("ID").setValue(current_id)
-                    database_notes.child(current_id.toString()).child("Creator").setValue(user.getMail())
+                    database_notes.child(current_id.toString()).child("Owner").setValue(user.getMail())
                 }
 
+                //UPDATES SHAREDKEYS
                 database_users.child(user.getMail()!!).child("SharedKeys").get()
                     .addOnSuccessListener {
-                        nKeys = it.childrenCount.toInt()
                         database_users.child(user.getMail()!!).child("SharedKeys").child(current_id.toString()).setValue(current_id.toString())
                     }
 

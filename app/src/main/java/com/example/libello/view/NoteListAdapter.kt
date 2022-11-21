@@ -1,5 +1,6 @@
 package com.example.libello.view
 import android.content.Context
+import android.util.Log
 import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
@@ -34,15 +35,17 @@ class NoteListAdapter(private val noteList: MutableList<Note>, val c: Context, v
         holder.binding.textViewDescription.text = note.desc
         holder.binding.textViewDescriptionTitle.text = "Descripción de la nota \""+note.name+"\":"
         holder.itemView.setOnClickListener {
-            val action = NoteListFragmentDirections.actionNoteListFragmentToEditNoteFragment(note.id)
+            val action = NoteListFragmentDirections.actionNoteListFragmentToEditNoteFragment(note.id,noteList[position].creator,user)
             holder.itemView.findNavController().navigate(action)
         }
+        //Recycler view on hold:
         holder.itemView.setOnLongClickListener{
             val popupMenu = PopupMenu(c,holder.itemView)
             popupMenu.inflate(R.menu.context_menu)
             popupMenu.setOnMenuItemClickListener {
                 when (it.itemId){
                     R.id.deleteElement->{
+                        //Delete the permission to edit the note
                         database.child("Users").child(user.getMail()!!).child("SharedKeys").get().addOnSuccessListener {
                             for (key in it.children) {
                                 if(it.child(key.value.toString()).value.toString()==note.id) {
@@ -50,13 +53,20 @@ class NoteListAdapter(private val noteList: MutableList<Note>, val c: Context, v
                                 }
                             }
                         }
-                        var creator=""
-                        database.child("Notes").get().addOnSuccessListener {
-                            creator = it.child("Creator").value.toString()
+                        //Delete the note itself (Only if the owner delete it)
+
+                        database.child("Notes").child(note.id).get().addOnSuccessListener {
+                            if(user.getMail()==it.child("Owner").value.toString()) {
+                                database.child("Notes").child(note.id).removeValue()
+                                database.child("Users").get().addOnSuccessListener {
+                                    for(user in it.children){
+                                        database.child("Users").child(user.child("Mail").value.toString().split(".")[0]).child("SharedKeys").child(note.id).removeValue()
+                                    }
+                                }
+
+                            }
                         }
-                        if(user.getMail()==creator) {
-                            database.child("Notes").child(note.id).removeValue()
-                        }
+
                         true
                     }
                     else->true

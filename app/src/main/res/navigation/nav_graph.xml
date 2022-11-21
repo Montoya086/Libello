@@ -53,6 +53,12 @@
         <argument
             android:name="noteID"
             app:argType="string" />
+        <argument
+            android:name="noteOwner"
+            app:argType="string" />
+        <argument
+            android:name="user"
+            app:argType="com.example.libello.network.User" />
     </fragment>
     <fragment
         android:id="@+id/signinFragment"

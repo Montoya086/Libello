@@ -21,14 +21,13 @@ class NoteListViewModel(): ViewModel() {
                 val temp=mutableListOf<Note>()
                 var noteReference = snapshot.child("Notes")
                 var userReference = snapshot.child("Users").child(mail)
-                val nKeys = userReference.child("SharedKeys").childrenCount
+                //FOR EACH SHARED KEY, CREATES A NOTE INSTANCE
                 for(key in userReference.child("SharedKeys").children){
-                    //text = noteReference.child(key).child("Content").value.toString()
-                    //Log.i("PRUEBA20", text)
                     var title= noteReference.child(key.value.toString()).child("Title").value.toString()
                     var desc =noteReference.child(key.value.toString()).child("Desc").value.toString()
                     var id = noteReference.child(key.value.toString()).child("ID").value.toString()
-                    temp.add(Note(title,desc,id))
+                    var creator = noteReference.child(key.value.toString()).child("Owner").value.toString()
+                    temp.add(Note(title,desc,id,creator))
                 }
                 notes.value =temp
             }

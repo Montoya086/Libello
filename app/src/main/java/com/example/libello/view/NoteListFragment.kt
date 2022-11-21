@@ -38,8 +38,8 @@ class NoteListFragment : Fragment(){
         }
         noteListViewModel.getNotes(args.user!!)
         val recyclerView = view.findViewById<RecyclerView>(R.id.noteListRv)
+        //UPDATES RECYCLER VIEW
         noteListViewModel.notes.observe(viewLifecycleOwner, Observer {
-            //val noteList = NoteList(args.user!!).getNotes()
             Log.i("RECYCLER",it.size.toString())
             recyclerView.layoutManager = LinearLayoutManager(view.context);
             recyclerView.adapter = NoteListAdapter(it,this.requireContext(),args.user!!)
