@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.libello.view.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="Login" >
         <action
             android:id="@+id/action_loginFragment_to_noteListFragment"
             app:destination="@id/noteListFragment" />
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/noteListFragment"
         android:name="com.example.libello.view.NoteListFragment"
-        android:label="NoteListFragment" >
+        android:label="Lista de notas" >
         <action
             android:id="@+id/action_noteListFragment_to_addNoteFragment"
             app:destination="@id/addNoteFragment" />
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/addNoteFragment"
         android:name="com.example.libello.view.AddNoteFragment"
-        android:label="AddNoteFragment" >
+        android:label="Nueva nota" >
         <action
             android:id="@+id/action_addNoteFragment_to_noteListFragment"
             app:destination="@id/noteListFragment"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/editNoteFragment"
         android:name="com.example.libello.view.EditNoteFragment"
-        android:label="EditNoteFragment" >
+        android:label="Editar nota" >
         <action
             android:id="@+id/action_editNoteFragment_to_noteListFragment"
             app:destination="@id/noteListFragment"
@@ -63,7 +63,7 @@
     <fragment
         android:id="@+id/signinFragment"
         android:name="com.example.libello.view.SigninFragment"
-        android:label="SigninFragment" >
+        android:label="Registro" >
         <action
             android:id="@+id/action_signinFragment_to_noteListFragment"
             app:destination="@id/noteListFragment" />
