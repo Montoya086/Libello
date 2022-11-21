@@ -56,6 +56,7 @@ class AddNoteFragment : Fragment(){
                     database_notes.child(current_id.toString()).child("Desc").setValue(desc)
                     database_notes.child(current_id.toString()).child("Title").setValue(title)
                     database_notes.child(current_id.toString()).child("ID").setValue(current_id)
+                    database_notes.child(current_id.toString()).child("Creator").setValue(user.getMail())
                 }
 
                 database_users.child(user.getMail()!!).child("SharedKeys").get()

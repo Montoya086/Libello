@@ -50,7 +50,13 @@ class NoteListAdapter(private val noteList: MutableList<Note>, val c: Context, v
                                 }
                             }
                         }
-                        database.child("Notes").child(note.id).removeValue()
+                        var creator=""
+                        database.child("Notes").get().addOnSuccessListener {
+                            creator = it.child("Creator").value.toString()
+                        }
+                        if(user.getMail()==creator) {
+                            database.child("Notes").child(note.id).removeValue()
+                        }
                         true
                     }
                     else->true
