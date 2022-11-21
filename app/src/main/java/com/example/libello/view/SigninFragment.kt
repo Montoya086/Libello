@@ -33,7 +33,7 @@ class SigninFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.loginButton.setOnClickListener{
-            val action = SigninFragmentDirections.actionSigninFragmentToNoteListFragment(User("", ""))
+            val action = SigninFragmentDirections.actionSigninFragmentToLoginFragment()
             this.findNavController().navigate(action)
         }
         binding.signinButton.setOnClickListener {

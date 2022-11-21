@@ -35,7 +35,8 @@
         android:label="AddNoteFragment" >
         <action
             android:id="@+id/action_addNoteFragment_to_noteListFragment"
-            app:destination="@id/noteListFragment" />
+            app:destination="@id/noteListFragment"
+            app:popUpTo="@id/loginFragment" />
         <argument
             android:name="User"
             app:argType="com.example.libello.network.User" />
@@ -50,7 +51,7 @@
             app:popUpTo="@id/noteListFragment"
             app:popUpToInclusive="true" />
         <argument
-            android:name="noteName"
+            android:name="noteID"
             app:argType="string" />
     </fragment>
     <fragment

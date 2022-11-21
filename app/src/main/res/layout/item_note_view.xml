@@ -15,18 +15,29 @@
 
         android:background="#F3F3F3">
 
+        <ImageButton
+            android:id="@+id/imageButtonMenu"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#F3F3F3"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/_126660_200" />
+
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:text="Titulo de la nota"
             android:textColor="#000000"
             android:textSize="34sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.031"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonMenu"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

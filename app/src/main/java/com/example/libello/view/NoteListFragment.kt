@@ -1,9 +1,8 @@
 package com.example.libello.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,8 +11,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.libello.R
-import com.example.libello.databinding.FragmentNoteListBinding
 import com.example.libello.dataLayer.NoteListViewModel
+import com.example.libello.databinding.FragmentNoteListBinding
+
 
 class NoteListFragment : Fragment(){
     private val args by navArgs<NoteListFragmentArgs>()
@@ -40,10 +40,13 @@ class NoteListFragment : Fragment(){
         val recyclerView = view.findViewById<RecyclerView>(R.id.noteListRv)
         noteListViewModel.notes.observe(viewLifecycleOwner, Observer {
             //val noteList = NoteList(args.user!!).getNotes()
+            Log.i("RECYCLER",it.size.toString())
             recyclerView.layoutManager = LinearLayoutManager(view.context);
-            recyclerView.adapter = NoteListAdapter(it)
+            recyclerView.adapter = NoteListAdapter(it,this.requireContext(),args.user!!)
             recyclerView.setHasFixedSize(true)
         })
 
     }
+
+
 }

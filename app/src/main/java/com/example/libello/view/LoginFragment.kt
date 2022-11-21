@@ -1,6 +1,7 @@
 package com.example.libello.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,8 @@ class LoginFragment : Fragment() {
                     // Checks if the user exists and has valid credentials
                     if(it.exists() && it.child("Password").value.toString() == password){
                         val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment(User(mail, password))
+                        binding.editTextTextPassword.text.clear()
+                        binding.editTextTextEmailAddress.text.clear()
                         this.findNavController().navigate(action)
                     }else{
                         Toast.makeText(this.context, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()

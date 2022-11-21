@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.example.libello.databinding.FragmentEditNoteBinding
 import com.google.firebase.database.*
 
 class EditNoteFragment : Fragment() {
+    val args by navArgs<EditNoteFragmentArgs>()
     private var _binding: FragmentEditNoteBinding? = null
     private val binding get() = _binding!!
     private lateinit var database: DatabaseReference
@@ -27,13 +29,12 @@ class EditNoteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // TO READ DATA
         database = FirebaseDatabase.getInstance().getReference("Notes")
-
+        val id = args.noteID.toString()
         val textListener = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                text = snapshot.child("2").child("Content").value.toString()
-                binding.editTextTextMultiLine.setText(text)
-                binding.nameText.setText(snapshot.child("2").child("Title").value.toString())
-                binding.descText.setText(snapshot.child("2").child("Desc").value.toString())
+                binding.editTextTextMultiLine.setText(snapshot.child(id).child("Content").value.toString())
+                binding.nameText.setText(snapshot.child(id).child("Title").value.toString())
+                binding.descText.setText(snapshot.child(id).child("Desc").value.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -46,12 +47,12 @@ class EditNoteFragment : Fragment() {
         // TO SAVE NEW DATA
         binding.floatingActionButton.setOnClickListener{
             try {
-                database.child("2").child("Content").setValue(binding.editTextTextMultiLine.text.toString())
-                database.child("2").child("Title").setValue(binding.nameText.text.toString())
-                database.child("2").child("Desc").setValue(binding.descText.text.toString())
+                database.child(id).child("Content").setValue(binding.editTextTextMultiLine.text.toString())
+                database.child(id).child("Title").setValue(binding.nameText.text.toString())
+                database.child(id).child("Desc").setValue(binding.descText.text.toString())
                 Toast.makeText(activity,"Cambios guardados",Toast.LENGTH_SHORT).show()
             }catch (e:Exception){
-                Toast.makeText(activity,"Ha ocurrido un error",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"Ha ocurrido un error de tipo "+e,Toast.LENGTH_SHORT).show()
             }
 
         }
