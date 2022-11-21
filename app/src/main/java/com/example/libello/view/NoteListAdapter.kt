@@ -37,7 +37,7 @@ class NoteListAdapter(private val noteList: MutableList<Note>, val c: Context, v
             val action = NoteListFragmentDirections.actionNoteListFragmentToEditNoteFragment(note.id)
             holder.itemView.findNavController().navigate(action)
         }
-        holder.binding.imageButtonMenu.setOnClickListener{
+        holder.itemView.setOnLongClickListener{
             val popupMenu = PopupMenu(c,holder.itemView)
             popupMenu.inflate(R.menu.context_menu)
             popupMenu.setOnMenuItemClickListener {
@@ -58,6 +58,7 @@ class NoteListAdapter(private val noteList: MutableList<Note>, val c: Context, v
                 }
             }
             popupMenu.show()
+            true
         }
     }
 
