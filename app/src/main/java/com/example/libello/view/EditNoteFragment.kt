@@ -3,9 +3,7 @@ package com.example.libello.view
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import android.widget.Toast
 import com.example.libello.R
@@ -38,9 +36,11 @@ class EditNoteFragment : Fragment() {
         val id = args.noteID
         val owner = args.noteOwner
         val user = args.user
-        val textListener = object : ValueEventListener{
+        val textListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                binding.editTextTextMultiLine.setText(snapshot.child(id).child("Content").value.toString())
+                binding.editTextTextMultiLine.setText(
+                    snapshot.child(id).child("Content").value.toString()
+                )
                 binding.nameText.setText(snapshot.child(id).child("Title").value.toString())
                 binding.descText.setText(snapshot.child(id).child("Desc").value.toString())
             }
@@ -53,24 +53,26 @@ class EditNoteFragment : Fragment() {
         database_notes.addValueEventListener(textListener)
 
         // TO SAVE NEW DATA
-        binding.floatingActionButton.setOnClickListener{
+        binding.floatingActionButton.setOnClickListener {
             try {
-                database_notes.child(id).child("Content").setValue(binding.editTextTextMultiLine.text.toString())
+                database_notes.child(id).child("Content")
+                    .setValue(binding.editTextTextMultiLine.text.toString())
                 database_notes.child(id).child("Title").setValue(binding.nameText.text.toString())
                 database_notes.child(id).child("Desc").setValue(binding.descText.text.toString())
-                Toast.makeText(activity,"Cambios guardados",Toast.LENGTH_SHORT).show()
-            }catch (e:Exception){
-                Toast.makeText(activity,"Ha ocurrido un error de tipo "+e,Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Cambios guardados", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Toast.makeText(activity, "Ha ocurrido un error de tipo " + e, Toast.LENGTH_SHORT)
+                    .show()
             }
 
         }
 
         // TO SHARE NOTE
-        binding.floatingActionButtonAdd.setOnClickListener{
+        binding.floatingActionButtonAdd.setOnClickListener {
             //ONLY THE OWNER CAN SHARE
-            Log.i("OWNER",owner)
-            Log.i("MAIL",user.getMail()!!)
-            if(owner==user.getMail()) {
+            Log.i("OWNER", owner)
+            Log.i("MAIL", user.getMail()!!)
+            if (owner == user.getMail()) {
                 val builder = AlertDialog.Builder(this.context)
                 val inflater = layoutInflater.inflate(R.layout.share_mail_layout, null)
                 val editTex = inflater.findViewById<EditText>(R.id.mailEditText)
@@ -105,7 +107,7 @@ class EditNoteFragment : Fragment() {
                     show()
                 }
                 //USER NOT FOUND
-            }else{
+            } else {
                 Toast.makeText(
                     activity,
                     "No tienes permiso de compartir esta nota",
