@@ -42,7 +42,8 @@ class AddNoteFragment : Fragment(){
         binding.createNote.setOnClickListener{
             val title = binding.editTextTitle.text.toString()
             val desc = binding.editTextDescription.text.toString()
-            if(title.isNotEmpty() && desc.isNotEmpty()) {
+            val noteType = binding.radioGroup.checkedRadioButtonId
+            if(title.isNotEmpty() && desc.isNotEmpty() && noteType != -1) {
                 var current_id = 0
 
                 //UPDATES CURRENT ID
@@ -54,11 +55,22 @@ class AddNoteFragment : Fragment(){
                 //UPDATES NOTES
                 database_notes.get().addOnSuccessListener {
                     database_notes.child(current_id.toString()).push()
-                    database_notes.child(current_id.toString()).child("Content").setValue("")
-                    database_notes.child(current_id.toString()).child("Desc").setValue(desc)
-                    database_notes.child(current_id.toString()).child("Title").setValue(title)
-                    database_notes.child(current_id.toString()).child("ID").setValue(current_id)
-                    database_notes.child(current_id.toString()).child("Owner").setValue(user.getMail())
+                    val currentID = current_id.toString()
+                    database_notes.child(currentID).child("Content").setValue("")
+                    database_notes.child(currentID).child("Desc").setValue(desc)
+                    database_notes.child(currentID).child("Title").setValue(title)
+                    database_notes.child(currentID).child("ID").setValue(current_id)
+                    database_notes.child(currentID).child("Owner").setValue(user.getMail())
+                    var temp = ""
+                    when(noteType){
+                        // Market
+                        2131231082 -> temp = "MARKET"
+                        // Finance
+                        2131231083 -> temp = "FINANCE"
+                        // Personal
+                        2131231084 -> temp = "PERSONAL"
+                    }
+                    database_notes.child(currentID).child("Type").setValue(temp)
                 }
 
                 //UPDATES SHAREDKEYS
