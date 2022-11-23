@@ -1,5 +1,6 @@
 package com.example.libello.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,7 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.libello.databinding.FragmentLoginBinding
 import com.example.libello.network.User
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -19,6 +25,7 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var  googleSignInClient: GoogleSignInClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,21 +49,17 @@ class LoginFragment : Fragment() {
             // Checks if theres data input
             if(mail.isNotEmpty() && password.isNotEmpty()) {
                 database = FirebaseDatabase.getInstance().getReference("Users")
-                database.child(mail).get().addOnSuccessListener {
+                database.child(split_mail).get().addOnSuccessListener {
                     // Checks if the user exists and has valid credentials
-                    if(it.exists() && it.child("Password").value.toString() == password){
-                        firebaseAuth.signInWithEmailAndPassword(mail,password).addOnCompleteListener {
-                            if(it.isSuccessful){
-                                val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment(User(split_mail, password))
-                                binding.editTextTextPassword.text.clear()
-                                binding.editTextTextEmailAddress.text.clear()
-                                this.findNavController().navigate(action)
-                            }else{
-                                Toast.makeText(this.context, it.exception.toString(), Toast.LENGTH_SHORT).show()
-                            }
+                    firebaseAuth.signInWithEmailAndPassword(mail,password).addOnCompleteListener {
+                        if(it.isSuccessful){
+                            val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment(User(split_mail))
+                            binding.editTextTextPassword.text.clear()
+                            binding.editTextTextEmailAddress.text.clear()
+                            this.findNavController().navigate(action)
+                        }else{
+                            Toast.makeText(this.context, it.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
-                    }else{
-                        Toast.makeText(this.context, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -70,5 +73,61 @@ class LoginFragment : Fragment() {
             val action = LoginFragmentDirections.actionLoginFragmentToSigninFragment()
             this.findNavController().navigate(action)
         }
+
+        //Google auth
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("231816380784-h6vk0o0kpk0jkatrrifsv0b5fp4icfoh.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this.requireContext(),gso)
+        binding.loginWithGoogleButton.setOnClickListener {
+            signIn()
+            googleSignInClient.signOut()
+        }
+    }
+
+    private fun signIn(){
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent,RC_SIGN_IN)
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == RC_SIGN_IN){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                if (account != null) {
+                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                    FirebaseAuth.getInstance().signInWithCredential(credential)
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                var splitMail = account.email.toString().split(".")[0]
+                                database = FirebaseDatabase.getInstance().getReference("Users")
+                                database.child(splitMail).get().addOnSuccessListener {
+                                    if(it.exists()){
+                                        val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment(User(splitMail))
+                                        this.findNavController().navigate(action)
+                                    }else{
+                                        database.child(splitMail).push()
+                                        database.child(splitMail).child("Mail").setValue(account.email)
+                                        //database.child(splitMail).child("Password").setValue(password)
+                                        val action = SigninFragmentDirections.actionSigninFragmentToNoteListFragment(User(splitMail))
+                                        this.findNavController().navigate(action)
+                                    }
+                                }
+                            }
+                        }
+                }
+            }catch (e: ApiException){
+                Toast.makeText(this.context, "Ha ocurrido un error de tipo "+e, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    companion object{
+        const val  RC_SIGN_IN = 1001
     }
 }

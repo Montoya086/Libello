@@ -3,21 +3,17 @@ package com.example.libello.network
 import android.os.Parcel
 import android.os.Parcelable
 
-class User(private val mail: String?, private val password: String?) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString()
-    ) {
+class User(private val mail: String?) : Parcelable {
+
+    constructor(parcel: Parcel) : this(parcel.readString()) {
     }
 
     fun getMail(): String? {
         return mail
     }
 
-
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(mail)
-        parcel.writeString(password)
     }
 
     override fun describeContents(): Int {
@@ -33,5 +29,6 @@ class User(private val mail: String?, private val password: String?) : Parcelabl
             return arrayOfNulls(size)
         }
     }
+
 
 }
