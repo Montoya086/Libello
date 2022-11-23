@@ -53,10 +53,16 @@ class LoginFragment : Fragment() {
                     // Checks if the user exists and has valid credentials
                     firebaseAuth.signInWithEmailAndPassword(mail,password).addOnCompleteListener {
                         if(it.isSuccessful){
-                            val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment(User(split_mail))
-                            binding.editTextTextPassword.text.clear()
-                            binding.editTextTextEmailAddress.text.clear()
-                            this.findNavController().navigate(action)
+                            val user_verif = firebaseAuth.currentUser?.isEmailVerified
+                            if(user_verif==true){
+                                val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment(User(split_mail))
+                                binding.editTextTextPassword.text.clear()
+                                binding.editTextTextEmailAddress.text.clear()
+                                firebaseAuth.signOut()
+                                this.findNavController().navigate(action)
+                            }else{
+                                Toast.makeText(this.context, "Usuario no verificado", Toast.LENGTH_SHORT).show()
+                            }
                         }else{
                             Toast.makeText(this.context, it.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
@@ -114,7 +120,7 @@ class LoginFragment : Fragment() {
                                         database.child(splitMail).push()
                                         database.child(splitMail).child("Mail").setValue(account.email)
                                         //database.child(splitMail).child("Password").setValue(password)
-                                        val action = SigninFragmentDirections.actionSigninFragmentToNoteListFragment(User(splitMail))
+                                        val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment(User(splitMail))
                                         this.findNavController().navigate(action)
                                     }
                                 }

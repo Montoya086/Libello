@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.libello.databinding.FragmentSigninBinding
 import com.example.libello.network.User
+import com.example.libello.view.LoginFragment.Companion.RC_SIGN_IN
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -64,10 +66,13 @@ class SigninFragment : Fragment(){
                     if(!it.exists()){
                         firebaseAuth.createUserWithEmailAndPassword(mail,password).addOnCompleteListener {
                             if(it.isSuccessful){
+                                sendEmailVerification()
                                 database.child(splitMail).push()
                                 database.child(splitMail).child("Mail").setValue(mail)
                                 //database.child(splitMail).child("Password").setValue(password)
-                                val action = SigninFragmentDirections.actionSigninFragmentToNoteListFragment(User(splitMail))
+                                firebaseAuth.signOut()
+                                Toast.makeText(this.context, "Correo de verificación enviado, vuelva a ingresar luego de verficiarse", Toast.LENGTH_SHORT).show()
+                                val action = SigninFragmentDirections.actionSigninFragmentToLoginFragment()
                                 this.findNavController().navigate(action)
                             }else{
                                 Toast.makeText(this.context, it.exception.toString(), Toast.LENGTH_SHORT).show()
@@ -82,7 +87,6 @@ class SigninFragment : Fragment(){
                 Toast.makeText(this.context, "Ingrese sus credenciales", Toast.LENGTH_SHORT).show()
             }
         }
-
         //Google auth
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("231816380784-h6vk0o0kpk0jkatrrifsv0b5fp4icfoh.apps.googleusercontent.com")
@@ -93,6 +97,18 @@ class SigninFragment : Fragment(){
         binding.loginWithGoogleButton.setOnClickListener {
             signIn()
             googleSignInClient.signOut()
+        }
+    }
+
+    private fun sendEmailVerification(){
+        val user = firebaseAuth.currentUser!!
+        user.sendEmailVerification().addOnCompleteListener{task->
+            if(task.isSuccessful){
+
+            }else{
+
+            }
+
         }
     }
 
