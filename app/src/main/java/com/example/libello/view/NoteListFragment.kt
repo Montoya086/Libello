@@ -15,7 +15,7 @@ import com.example.libello.dataLayer.NoteListViewModel
 import com.example.libello.databinding.FragmentNoteListBinding
 
 
-class NoteListFragment : Fragment(){
+class NoteListFragment : Fragment() {
     private val args by navArgs<NoteListFragmentArgs>()
     private var _binding: FragmentNoteListBinding? = null
     private val binding get() = _binding!!
@@ -39,24 +39,40 @@ class NoteListFragment : Fragment(){
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if(id == R.id.AllFilter){
+            noteListViewModel.getAllNotes(args.user!!)
+        }
+        if(id == R.id.FinanceFilter){
+            noteListViewModel.getFilterNotes(args.user!!, "FINANCE")
+        }
+        if(id == R.id.MarketFiler){
+            noteListViewModel.getFilterNotes(args.user!!, "MARKET")
+        }
+        if(id == R.id.PersonalFilter){
+            noteListViewModel.getFilterNotes(args.user!!, "PERSONAL")
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        noteListViewModel=ViewModelProvider(this).get(NoteListViewModel::class.java)
-        binding.addNote.setOnClickListener{
-            val action = NoteListFragmentDirections.actionNoteListFragmentToAddNoteFragment(args.user!!)
+        noteListViewModel = ViewModelProvider(this).get(NoteListViewModel::class.java)
+        binding.addNote.setOnClickListener {
+            val action =
+                NoteListFragmentDirections.actionNoteListFragmentToAddNoteFragment(args.user!!)
             this.findNavController().navigate(action)
         }
-        noteListViewModel.getNotes(args.user!!)
+        noteListViewModel.getAllNotes(args.user!!)
         val recyclerView = view.findViewById<RecyclerView>(R.id.noteListRv)
         //UPDATES RECYCLER VIEW
         noteListViewModel.notes.observe(viewLifecycleOwner, Observer {
-            Log.i("RECYCLER",it.size.toString())
+            Log.i("RECYCLER", it.size.toString())
             recyclerView.layoutManager = LinearLayoutManager(view.context);
-            recyclerView.adapter = NoteListAdapter(it,this.requireContext(),args.user!!)
+            recyclerView.adapter = NoteListAdapter(it, this.requireContext(), args.user!!)
             recyclerView.setHasFixedSize(true)
         })
 
     }
-
-
 }
