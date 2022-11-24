@@ -66,4 +66,9 @@
     <string name="menuFilterOnlyFinance">Solo finanzas</string>
     <string name="menuFilterOnlyPersonal">Solo personal</string>
     <string name="deleteNote">Borrar</string>
+    <string name="labelLogin">Login</string>
+    <string name="labelNotes">Mis notas</string>
+    <string name="labelNewNote">Nueva nota</string>
+    <string name="labelSignUp">Registro</string>
+    <string name="labelEditNote">Editar nota</string>
 </resources>

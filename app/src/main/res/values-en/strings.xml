@@ -51,4 +51,9 @@
     <string name="menuFilterOnlyFinance">Only finance</string>
     <string name="menuFilterOnlyPersonal">Only personal</string>
     <string name="deleteNote">Delete</string>
+    <string name="labelLogin">Login</string>
+    <string name="labelNotes">My notes</string>
+    <string name="labelNewNote">New note</string>
+    <string name="labelSignUp">Sign Up</string>
+    <string name="labelEditNote">Edit note</string>
 </resources>

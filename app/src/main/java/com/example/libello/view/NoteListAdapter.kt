@@ -16,7 +16,8 @@ import com.google.firebase.database.FirebaseDatabase
 class NoteListAdapter(
     private val noteList: MutableList<Note>,
     private val c: Context,
-    private val user: User
+    private val user: User,
+    private val desc_string: String
 ) : RecyclerView.Adapter<NoteListAdapter.NoteListHolder>() {
     private lateinit var database: DatabaseReference
 
@@ -34,7 +35,7 @@ class NoteListAdapter(
         database = FirebaseDatabase.getInstance().reference
         holder.binding.textViewTitle.text = note.name
         holder.binding.textViewDescription.text = note.desc
-        holder.binding.textViewDescriptionTitle.text = R.string.noteListAdapterDesc.toString()
+        holder.binding.textViewDescriptionTitle.text = desc_string
         holder.itemView.setOnClickListener {
             val action = NoteListFragmentDirections.actionNoteListFragmentToEditNoteFragment(
                 note.id, noteList[position].creator, user

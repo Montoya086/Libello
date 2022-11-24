@@ -68,7 +68,7 @@ class NoteListFragment : Fragment() {
         noteListViewModel.notes.observe(viewLifecycleOwner, Observer {
             Log.i("RECYCLER", it.size.toString())
             recyclerView.layoutManager = LinearLayoutManager(view.context)
-            recyclerView.adapter = NoteListAdapter(it, this.requireContext(), args.user!!)
+            recyclerView.adapter = NoteListAdapter(it, this.requireContext(), args.user!!, getString(R.string.noteListAdapterDesc))
             recyclerView.setHasFixedSize(true)
         })
 
