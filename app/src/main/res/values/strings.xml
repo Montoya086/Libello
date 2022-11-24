@@ -60,4 +60,10 @@
     <string name="toastSentVerificationMail">Correo de verificación enviado, vuelva a ingresar luego de verficiarse:</string>
     <string name="toastMailAlreadyInUser">Este correo ya esta en uso</string>
     <string name="toastAskCredentials">Ingrese sus credenciales</string>
+    <string name="menuFilterTitle">Filtra tus notas</string>
+    <string name="menuFilterAllNotes">Todas las notas</string>
+    <string name="menuFilterOnlyMarket">Solo supermercado</string>
+    <string name="menuFilterOnlyFinance">Solo finanzas</string>
+    <string name="menuFilterOnlyPersonal">Solo personal</string>
+    <string name="deleteNote">Borrar</string>
 </resources>

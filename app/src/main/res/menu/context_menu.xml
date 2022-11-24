@@ -2,6 +2,6 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Borrar"
+    <item android:title="@string/deleteNote"
         android:id="@+id/deleteElement"/>
 </menu>

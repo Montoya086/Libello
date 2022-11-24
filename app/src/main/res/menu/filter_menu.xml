@@ -4,17 +4,17 @@
 
     <item android:id="@+id/Filters"
         android:icon="@drawable/ic_filter_icon"
-        android:title="Supermercado"
+        android:title="@string/menuFilterTitle"
         app:showAsAction="ifRoom" >
         <menu>
             <item android:id="@+id/AllFilter"
-                android:title="Todas las notas" />
+                android:title="@string/menuFilterAllNotes" />
             <item android:id="@+id/MarketFiler"
-                android:title="Solo Supermercado" />
+                android:title="@string/menuFilterOnlyMarket" />
             <item android:id="@+id/FinanceFilter"
-                android:title="Solo Finanzas" />
+                android:title="@string/menuFilterOnlyFinance" />
             <item android:id="@+id/PersonalFilter"
-                android:title="Solo Personal" />
+                android:title="@string/menuFilterOnlyPersonal" />
         </menu>
     </item>
 

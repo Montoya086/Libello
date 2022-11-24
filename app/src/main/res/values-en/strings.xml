@@ -45,4 +45,10 @@
     <string name="toastSentVerificationMail">Verification mail has been sent. You can now log in</string>
     <string name="toastMailAlreadyInUser">This email address is already in use</string>
     <string name="toastAskCredentials">Input your credentials</string>
+    <string name="menuFilterTitle">Filter your notes</string>
+    <string name="menuFilterAllNotes">All notes</string>
+    <string name="menuFilterOnlyMarket">Only super market</string>
+    <string name="menuFilterOnlyFinance">Only finance</string>
+    <string name="menuFilterOnlyPersonal">Only personal</string>
+    <string name="deleteNote">Delete</string>
 </resources>
