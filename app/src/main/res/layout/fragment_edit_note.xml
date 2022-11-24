@@ -19,12 +19,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre:       ">
+                android:text="@string/editNoteFragmentNoteTitle">
             </TextView>
             <EditText
                 android:id="@+id/name_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="text">
             </EditText>
         </LinearLayout>
         <LinearLayout
@@ -35,12 +37,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descripción:">
+                android:text="@string/editNoteFragmentDescTitle">
             </TextView>
             <EditText
                 android:id="@+id/desc_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:importantForAutofill="no">
             </EditText>
         </LinearLayout>
 
@@ -64,7 +68,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_menu_save"
-            app:tint="#FFFFFF" />
+            app:tint="#FFFFFF"
+            android:focusable="true" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -76,7 +81,8 @@
             app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_menu_share"
-            app:tint="#FFFFFF" />
+            app:tint="#FFFFFF"
+            android:focusable="true" />
 
         <EditText
             android:id="@+id/editTextTextMultiLine"
@@ -84,7 +90,7 @@
             android:layout_height="match_parent"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            android:hint="@string/editNoteFragmentDescText"
             android:inputType="textMultiLine"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -92,7 +98,8 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:importantForAutofill="no" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

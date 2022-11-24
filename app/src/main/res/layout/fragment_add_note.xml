@@ -12,7 +12,7 @@
         android:layout_marginStart="143dp"
         android:layout_marginTop="42dp"
         android:layout_marginEnd="143dp"
-        android:text="NUEVA NOTA"
+        android:text="@string/AddNoteFragmentTitle"
         android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="35dp"
-            android:text="Titulo de la nota:"
+            android:text="@string/AddNoteFragmentNoteTitle"
             android:textColor="#F22C2C"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:text="Descripcion de la nota:"
+            android:text="@string/AddNoteFragmentNoteDescription"
             android:textColor="#F22C2C"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,13 +70,15 @@
             android:layout_marginTop="8dp"
             android:width="300dp"
             android:ems="10"
-            android:hint="Mi nueva nota"
+            android:hint="@string/AddNoteFragmentNoteTitleHint"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <TextView
             android:id="@+id/textViewType"
@@ -84,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:text="Tipo de nota:"
+            android:text="@string/AddNoteFragmentRadioGroupTitle"
             android:textColor="#F22C2C"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +104,7 @@
             android:layout_marginBottom="32dp"
             android:height="60dp"
             android:backgroundTint="#F22C2C"
-            android:text="Create note"
+            android:text="@string/AddNoteFragmentCreateButtonText"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,15 +119,14 @@
             android:layout_marginTop="8dp"
             android:width="300dp"
             android:ems="10"
-            android:hint="Lorem ipsum dolor sit amet,
-            \nconsectetur adipiscing elit, sed do eiusmod
-            \ntempor incididunt ut labore et dolore magna
-            \naliqua. Neque ornare aenean euismod elementum."
+            android:hint="@string/descriptionHint"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescription"
+            android:inputType="text"
+            android:autofillHints="" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -142,7 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:buttonTint="#F22C2C"
-                android:text="Supermercado"
+                android:text="@string/radioButtonMarket"
                 android:textColorLink="#F22C2C" />
 
             <RadioButton
@@ -150,7 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:buttonTint="#F22C2C"
-                android:text="Finanzas"
+                android:text="@string/radioButtonFinanzas"
                 android:textColorLink="#F22C2C" />
 
             <RadioButton
@@ -158,7 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:buttonTint="#F22C2C"
-                android:text="Personal"
+                android:text="@string/radioButtonPersonal"
                 android:textColorHighlight="#F22C2C"
                 android:textColorLink="#F22C2C"
                 app:useMaterialThemeColors="false" />
