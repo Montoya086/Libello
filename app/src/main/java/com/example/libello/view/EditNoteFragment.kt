@@ -1,5 +1,6 @@
 package com.example.libello.view
 
+//Librerias
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,17 @@ import com.example.libello.R
 import com.example.libello.databinding.FragmentEditNoteBinding
 import com.google.firebase.database.*
 
+/*
+*-------------------------------------------
+* EditNoteFragment
+*-------------------------------------------
+* Descripción: Fragmento para la edicion de
+* las caracteristicas de una nota ya creada.
+*
+* La nota se actualiza automaticamente en
+* todas las cuentas compartidas
+*-------------------------------------------
+*/
 class EditNoteFragment : Fragment() {
     private val args by navArgs<EditNoteFragmentArgs>()
     private var _binding: FragmentEditNoteBinding? = null
@@ -29,6 +41,11 @@ class EditNoteFragment : Fragment() {
         return binding.root
     }
 
+    /*
+    * onViewCreated
+    * Inicializa el ciclo de vida del fragment.
+    * Parametros: view, savedInstance
+    */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // TO READ DATA

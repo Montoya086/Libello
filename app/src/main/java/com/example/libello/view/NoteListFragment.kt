@@ -1,5 +1,6 @@
 package com.example.libello.view
 
+//Librerias
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -14,7 +15,17 @@ import com.example.libello.R
 import com.example.libello.dataLayer.NoteListViewModel
 import com.example.libello.databinding.FragmentNoteListBinding
 
-
+/*
+*-------------------------------------------
+* NoteListFragment
+*-------------------------------------------
+* Descripción: Fragmento para la edicion de
+* las caracteristicas de una nota ya creada.
+*
+* La nota se actualiza automaticamente en
+* todas las cuentas compartidas
+*-------------------------------------------
+*/
 class NoteListFragment : Fragment() {
     private val args by navArgs<NoteListFragmentArgs>()
     private var _binding: FragmentNoteListBinding? = null
@@ -27,16 +38,31 @@ class NoteListFragment : Fragment() {
         return binding.root
     }
 
+    /*
+    * onCreate
+    * Creacion de la instancia.
+    * Parametros: savedInstance
+    */
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
     }
 
+    /*
+    * onCreateOPtionsMenu
+    * Creacion del menu de opciones.
+    * Parametros: menu, inflater
+    */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.filter_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    /*
+    * onOptionsItemSelected
+    * Creacion de las opciones de tipo de Nota.
+    * Parametros: item
+    */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == R.id.AllFilter) {
@@ -54,6 +80,11 @@ class NoteListFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    /*
+    * onViewCreated
+    * Inicializa el ciclo de vida del fragment.
+    * Parametros: view, savedInstance
+    */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         noteListViewModel = ViewModelProvider(this).get(NoteListViewModel::class.java)
