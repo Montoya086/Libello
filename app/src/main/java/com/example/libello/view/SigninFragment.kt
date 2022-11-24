@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.libello.R
 import com.example.libello.databinding.FragmentSigninBinding
 import com.example.libello.network.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -68,8 +69,8 @@ class SigninFragment : Fragment() {
                                     firebaseAuth.signOut()
                                     Toast.makeText(
                                         this.context,
-                                        "Correo de verificación enviado, vuelva a ingresar luego de verficiarse",
-                                        Toast.LENGTH_SHORT
+                                        R.string.toastSentVerificationMail,
+                                        Toast.LENGTH_LONG
                                     ).show()
                                     val action =
                                         SigninFragmentDirections.actionSigninFragmentToLoginFragment()
@@ -85,8 +86,8 @@ class SigninFragment : Fragment() {
                     } else {
                         Toast.makeText(
                             this.context,
-                            "Este correo ya esta en uso",
-                            Toast.LENGTH_SHORT
+                            R.string.toastMailAlreadyInUser,
+                            Toast.LENGTH_LONG
                         ).show()
                     }
                 }
@@ -163,7 +164,7 @@ class SigninFragment : Fragment() {
             } catch (e: ApiException) {
                 Toast.makeText(
                     this.context,
-                    "Ha ocurrido un error de tipo " + e,
+                    R.string.toastErrorOccurred.toString() + e,
                     Toast.LENGTH_SHORT
                 ).show()
             }

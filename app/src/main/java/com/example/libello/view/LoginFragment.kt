@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.libello.R
 import com.example.libello.databinding.FragmentLoginBinding
 import com.example.libello.network.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -65,7 +66,7 @@ class LoginFragment : Fragment() {
                             } else {
                                 Toast.makeText(
                                     this.context,
-                                    "Usuario no verificado",
+                                    R.string.toastUserNotVerified,
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
@@ -79,7 +80,7 @@ class LoginFragment : Fragment() {
                     }
                 }
             } else {
-                Toast.makeText(this.context, "Ingrese sus credenciales", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, R.string.toastAskCredentials, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -146,7 +147,7 @@ class LoginFragment : Fragment() {
             } catch (e: ApiException) {
                 Toast.makeText(
                     this.context,
-                    "Ha ocurrido un error de tipo " + e,
+                    R.string.toastErrorOccurred.toString() + e,
                     Toast.LENGTH_SHORT
                 ).show()
             }

@@ -34,7 +34,7 @@ class NoteListAdapter(
         database = FirebaseDatabase.getInstance().reference
         holder.binding.textViewTitle.text = note.name
         holder.binding.textViewDescription.text = note.desc
-        holder.binding.textViewDescriptionTitle.text = "Descripción:"
+        holder.binding.textViewDescriptionTitle.text = R.string.noteListAdapterDesc.toString()
         holder.itemView.setOnClickListener {
             val action = NoteListFragmentDirections.actionNoteListFragmentToEditNoteFragment(
                 note.id, noteList[position].creator, user

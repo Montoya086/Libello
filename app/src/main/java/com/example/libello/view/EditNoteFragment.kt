@@ -62,9 +62,9 @@ class EditNoteFragment : Fragment() {
                     .setValue(binding.editTextTextMultiLine.text.toString())
                 tempRef.child("Title").setValue(binding.nameText.text.toString())
                 tempRef.child("Desc").setValue(binding.descText.text.toString())
-                Toast.makeText(activity, "Cambios guardados", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, R.string.toastSavedChanges, Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
-                Toast.makeText(activity, "Ha ocurrido un error de tipo " + e, Toast.LENGTH_SHORT)
+                Toast.makeText(activity, R.string.toastErrorOccurred.toString() + e, Toast.LENGTH_SHORT)
                     .show()
             }
 
@@ -80,30 +80,30 @@ class EditNoteFragment : Fragment() {
                 val inflater = layoutInflater.inflate(R.layout.share_mail_layout, null)
                 val editTex = inflater.findViewById<EditText>(R.id.mailEditText)
                 with(builder) {
-                    setTitle("Ingrese el correo al cual desea compartir")
+                    setTitle(R.string.shareNote)
                     //POSITIVE
-                    setPositiveButton("Compartir") { dialog, which ->
-                        val splitmail = editTex.text.toString().split(".")[0]
-                        databaseUsers.child(splitmail).get().addOnSuccessListener {
-                            if (it.exists() && splitmail != "") {
-                                databaseUsers.child(splitmail).child("SharedKeys").child(id)
+                    setPositiveButton(R.string.shareNotePositiveButton) { dialog, which ->
+                        val splitMail = editTex.text.toString().split(".")[0]
+                        databaseUsers.child(splitMail).get().addOnSuccessListener {
+                            if (it.exists() && splitMail != "") {
+                                databaseUsers.child(splitMail).child("SharedKeys").child(id)
                                     .setValue(id)
                                 Toast.makeText(
                                     activity,
-                                    "El usuario ha sido agregado",
+                                    R.string.shareNoteUserAdded,
                                     Toast.LENGTH_SHORT
                                 ).show()
                             } else {
                                 Toast.makeText(
                                     activity,
-                                    "Usuario no encontrado",
+                                    R.string.shareNoteUserNotFound,
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
                         }
                     }
                     //NEGATIVE
-                    setNegativeButton("Cancelar") { dialog, which ->
+                    setNegativeButton(R.string.shareNoteNegativeButton) { dialog, which ->
 
                     }
                     setView(inflater)
@@ -113,7 +113,7 @@ class EditNoteFragment : Fragment() {
             } else {
                 Toast.makeText(
                     activity,
-                    "No tienes permiso de compartir esta nota",
+                    R.string.shareNotePermissionToShareDenied,
                     Toast.LENGTH_SHORT
                 ).show()
             }

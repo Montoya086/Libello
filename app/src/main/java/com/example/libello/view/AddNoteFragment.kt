@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.libello.R
 import com.example.libello.databinding.FragmentAddNoteBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -84,7 +85,7 @@ class AddNoteFragment : Fragment() {
             } else {
                 Toast.makeText(
                     this.context,
-                    "Asegurese de llenar todos los campos",
+                    R.string.toastFillNoteData,
                     Toast.LENGTH_SHORT
                 ).show()
             }

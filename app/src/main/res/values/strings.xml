@@ -1,35 +1,35 @@
 <resources>
-    <string name="app_name">Libello</string>
+    <string name="app_name" translatable="false">Libello</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home" translatable="false">Home</string>
+    <string name="menu_gallery" translatable="false">Gallery</string>
+    <string name="menu_slideshow" translatable="false">Slideshow</string>
     <string name="radioButtonPersonal">Personal</string>
     <string name="radioButtonFinanzas">Finanzas</string>
     <string name="radioButtonMarket">Supermercado</string>
-    <string name="descriptionHint">Lorem ipsum dolor sit amet. Quo alias sint ea provident pariatur 33 nihil incidunt hic saepe consequuntur aut excepturi numquam. Aut deserunt dolor eos reprehenderit quam vel aperiam odit est natus sunt vel Quis dignissimos sed omnis tempore.</string>
+    <string name="descriptionHint" translatable="false">Lorem ipsum dolor sit amet. Quo alias sint ea provident pariatur 33 nihil incidunt hic saepe consequuntur aut excepturi numquam. Aut deserunt dolor eos reprehenderit quam vel aperiam odit est natus sunt vel Quis dignissimos sed omnis tempore.</string>
     <string name="AddNoteFragmentTitle">NUEVA NOTA</string>
     <string name="AddNoteFragmentNoteTitle">Titulo de la nota:</string>
     <string name="AddNoteFragmentNoteDescription">Descripcion de la nota:</string>
     <string name="AddNoteFragmentNoteTitleHint">Mi nueva nota</string>
     <string name="AddNoteFragmentRadioGroupTitle">Tipo de nota:</string>
-    <string name="AddNoteFragmentCreateButtonText">Create note</string>
+    <string name="AddNoteFragmentCreateButtonText">Crear Nota</string>
     <string name="editNoteFragmentNoteTitle">Título\t\t\t\t</string>
     <string name="editNoteFragmentDescTitle">Descripción:</string>
-    <string name="editNoteFragmentDescText">Lorem ipsum dolor sit amet. Aut mollitia temporibus est itaque accusamus et consectetur illum nam omnis laborum. Quo quas enim et praesentium dolorem ut expedita omnis est labore molestias aut rerum asperiores.</string>
+    <string name="editNoteFragmentDescText" translatable="false">Lorem ipsum dolor sit amet. Aut mollitia temporibus est itaque accusamus et consectetur illum nam omnis laborum. Quo quas enim et praesentium dolorem ut expedita omnis est labore molestias aut rerum asperiores.</string>
     <string name="loginFragmentMailTitle">Correo Electrónico</string>
     <string name="loginFragmentPasswordTitle">Contraseña</string>
     <string name="loginFragmentMailHint">ejemplo@correo.com</string>
     <string name="loginFragmentLoginButton">Iniciar sesíon</string>
     <string name="loginFragmentGoogleLoginButton">Iniciar Sesión con Google</string>
-    <string name="loginFragmentPasswordHint">******************</string>
+    <string name="loginFragmentPasswordHint" translatable="false">******************</string>
     <string name="loginFragmentSignInButton">Registrate ahora</string>
     <string name="loginFragmentFragmentTitle">INICIAR SESIÓN</string>
     <string name="loginFragmentNoAccountText">¿No tienes una cuenta aún?</string>
@@ -38,7 +38,7 @@
     <string name="signInFragmentPasswordTitle">Contraseña</string>
     <string name="signInFragmentMailHint">ejemplo@correo.com</string>
     <string name="signInFragmentGoogleSignIn">Iniciar Sesión con Google</string>
-    <string name="signInFragmentPasswordHint">******************</string>
+    <string name="signInFragmentPasswordHint" translatable="false">******************</string>
     <string name="signInFragmentSignInButton">Registrarme</string>
     <string name="signInFragmenttoLogInText">¿Ya tienes una cuenta?</string>
     <string name="signInFragmentLogInButton">Inicia sesión</string>
@@ -46,4 +46,18 @@
     <string name="singleNoteDescription">Descripción de la nota</string>
     <string name="singleNoteDescriptionContent">Ejemplo</string>
     <string name="shareMailExampleMail">ejemplo@gmail.com</string>
+    <string name="toastFillNoteData">Asegurese de llenar todos los campos</string>
+    <string name="toastSavedChanges">Cambios guardados</string>
+    <string name="toastErrorOccurred">Ha ocurrido un error: </string>
+    <string name="shareNote">Ingrese el correo al cual desea compartir</string>
+    <string name="shareNotePositiveButton">Compartir</string>
+    <string name="shareNoteUserAdded">El usuario ha sido agregado</string>
+    <string name="shareNoteUserNotFound">Usuario no encontrado</string>
+    <string name="shareNoteNegativeButton">Cancelar</string>
+    <string name="shareNotePermissionToShareDenied">No tienes permiso de compartir esta nota</string>
+    <string name="toastUserNotVerified">Usuario no verificado</string>
+    <string name="noteListAdapterDesc">Descripción:</string>
+    <string name="toastSentVerificationMail">Correo de verificación enviado, vuelva a ingresar luego de verficiarse:</string>
+    <string name="toastMailAlreadyInUser">Este correo ya esta en uso</string>
+    <string name="toastAskCredentials">Ingrese sus credenciales</string>
 </resources>
