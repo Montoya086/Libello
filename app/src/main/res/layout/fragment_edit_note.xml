@@ -68,7 +68,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_menu_save"
-            app:tint="#FFFFFF"
+            app:tint="@color/white"
+            app:backgroundTint="@color/libelloRed"
             android:focusable="true" />
 
 
@@ -81,7 +82,8 @@
             app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_menu_share"
-            app:tint="#FFFFFF"
+            app:backgroundTint="@color/libelloRed"
+            app:tint="@color/white"
             android:focusable="true" />
 
         <EditText

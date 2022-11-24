@@ -13,7 +13,7 @@
         android:layout_marginTop="42dp"
         android:layout_marginEnd="143dp"
         android:text="@string/AddNoteFragmentTitle"
-        android:textColor="#000000"
+        android:textColor="@color/blackText"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -28,7 +28,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:background="#34ACACAC"
+        android:background="@color/backgroundSquare"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="35dp"
             android:text="@string/AddNoteFragmentNoteTitle"
-            android:textColor="#F22C2C"
+            android:textColor="@color/libelloRed"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.071"
@@ -56,7 +56,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:text="@string/AddNoteFragmentNoteDescription"
-            android:textColor="#F22C2C"
+            android:textColor="@color/libelloRed"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.091"
@@ -87,7 +87,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:text="@string/AddNoteFragmentRadioGroupTitle"
-            android:textColor="#F22C2C"
+            android:textColor="@color/libelloRed"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.065"
@@ -103,7 +103,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
             android:height="60dp"
-            android:backgroundTint="#F22C2C"
+            android:backgroundTint="@color/libelloRed"
             android:text="@string/AddNoteFragmentCreateButtonText"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -142,26 +142,26 @@
                 android:id="@+id/radioButton1"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:buttonTint="#F22C2C"
+                android:buttonTint="@color/libelloRed"
                 android:text="@string/radioButtonMarket"
-                android:textColorLink="#F22C2C" />
+                android:textColorLink="@color/libelloRed" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:buttonTint="#F22C2C"
+                android:buttonTint="@color/libelloRed"
                 android:text="@string/radioButtonFinanzas"
-                android:textColorLink="#F22C2C" />
+                android:textColorLink="@color/libelloRed" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:buttonTint="#F22C2C"
+                android:buttonTint="@color/libelloRed"
                 android:text="@string/radioButtonPersonal"
-                android:textColorHighlight="#F22C2C"
-                android:textColorLink="#F22C2C"
+                android:textColorHighlight="@color/libelloRed"
+                android:textColorLink="@color/libelloRed"
                 app:useMaterialThemeColors="false" />
         </RadioGroup>
 
