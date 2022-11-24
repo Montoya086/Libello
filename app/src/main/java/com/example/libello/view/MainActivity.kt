@@ -7,7 +7,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.example.libello.R
 import com.example.libello.databinding.ActivityMainBinding
-import com.example.libello.databinding.FragmentLoginBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController

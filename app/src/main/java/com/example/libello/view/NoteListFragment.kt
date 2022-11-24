@@ -21,9 +21,7 @@ class NoteListFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var noteListViewModel: NoteListViewModel
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentNoteListBinding.inflate(inflater, container, false)
         return binding.root
@@ -41,16 +39,16 @@ class NoteListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        if(id == R.id.AllFilter){
+        if (id == R.id.AllFilter) {
             noteListViewModel.getAllNotes(args.user!!)
         }
-        if(id == R.id.FinanceFilter){
+        if (id == R.id.FinanceFilter) {
             noteListViewModel.getFilterNotes(args.user!!, "FINANCE")
         }
-        if(id == R.id.MarketFiler){
+        if (id == R.id.MarketFiler) {
             noteListViewModel.getFilterNotes(args.user!!, "MARKET")
         }
-        if(id == R.id.PersonalFilter){
+        if (id == R.id.PersonalFilter) {
             noteListViewModel.getFilterNotes(args.user!!, "PERSONAL")
         }
         return super.onOptionsItemSelected(item)
@@ -69,7 +67,7 @@ class NoteListFragment : Fragment() {
         //UPDATES RECYCLER VIEW
         noteListViewModel.notes.observe(viewLifecycleOwner, Observer {
             Log.i("RECYCLER", it.size.toString())
-            recyclerView.layoutManager = LinearLayoutManager(view.context);
+            recyclerView.layoutManager = LinearLayoutManager(view.context)
             recyclerView.adapter = NoteListAdapter(it, this.requireContext(), args.user!!)
             recyclerView.setHasFixedSize(true)
         })

@@ -2,7 +2,6 @@ package com.example.libello.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,7 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var  googleSignInClient: GoogleSignInClient
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,36 +39,46 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         firebaseAuth = FirebaseAuth.getInstance()
         //MAIL AUTH
-        binding.loginButton.setOnClickListener{
+        binding.loginButton.setOnClickListener {
             // Reads the data of the editText
             val mail: String = binding.editTextTextEmailAddress.text.toString()
-            val split_mail : String = mail.split(".")[0]
+            val splitMail: String = mail.split(".")[0]
             val password: String = binding.editTextTextPassword.text.toString()
 
             // Checks if theres data input
-            if(mail.isNotEmpty() && password.isNotEmpty()) {
+            if (mail.isNotEmpty() && password.isNotEmpty()) {
                 database = FirebaseDatabase.getInstance().getReference("Users")
-                database.child(split_mail).get().addOnSuccessListener {
+                database.child(splitMail).get().addOnSuccessListener {
                     // Checks if the user exists and has valid credentials
-                    firebaseAuth.signInWithEmailAndPassword(mail,password).addOnCompleteListener {
-                        if(it.isSuccessful){
-                            val user_verif = firebaseAuth.currentUser?.isEmailVerified
-                            if(user_verif==true){
-                                val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment(User(split_mail))
+                    firebaseAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            val userVerification = firebaseAuth.currentUser?.isEmailVerified
+                            if (userVerification == true) {
+                                val action =
+                                    LoginFragmentDirections.actionLoginFragmentToNoteListFragment(
+                                        User(splitMail)
+                                    )
                                 binding.editTextTextPassword.text.clear()
                                 binding.editTextTextEmailAddress.text.clear()
                                 firebaseAuth.signOut()
                                 this.findNavController().navigate(action)
-                            }else{
-                                Toast.makeText(this.context, "Usuario no verificado", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(
+                                    this.context,
+                                    "Usuario no verificado",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
-                        }else{
-                            Toast.makeText(this.context, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(
+                                this.context,
+                                it.exception.toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 }
-
-            }else{
+            } else {
                 Toast.makeText(this.context, "Ingrese sus credenciales", Toast.LENGTH_SHORT).show()
             }
         }
@@ -86,54 +95,65 @@ class LoginFragment : Fragment() {
             .requestEmail()
             .build()
 
-        googleSignInClient = GoogleSignIn.getClient(this.requireContext(),gso)
+        googleSignInClient = GoogleSignIn.getClient(this.requireContext(), gso)
         binding.loginWithGoogleButton.setOnClickListener {
             signIn()
             googleSignInClient.signOut()
         }
     }
 
-    private fun signIn(){
+    private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent,RC_SIGN_IN)
+        startActivityForResult(signInIntent, RC_SIGN_IN)
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == RC_SIGN_IN){
+        if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)
                 if (account != null) {
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential)
-                        .addOnCompleteListener {
+                        .addOnCompleteListener { it ->
                             if (it.isSuccessful) {
-                                var splitMail = account.email.toString().split(".")[0]
+                                val splitMail = account.email.toString().split(".")[0]
                                 database = FirebaseDatabase.getInstance().getReference("Users")
                                 database.child(splitMail).get().addOnSuccessListener {
-                                    if(it.exists()){
-                                        val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment(User(splitMail))
+                                    if (it.exists()) {
+                                        val action =
+                                            LoginFragmentDirections.actionLoginFragmentToNoteListFragment(
+                                                User(splitMail)
+                                            )
                                         this.findNavController().navigate(action)
-                                    }else{
+                                    } else {
                                         database.child(splitMail).push()
-                                        database.child(splitMail).child("Mail").setValue(account.email)
+                                        database.child(splitMail).child("Mail")
+                                            .setValue(account.email)
                                         //database.child(splitMail).child("Password").setValue(password)
-                                        val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment(User(splitMail))
+                                        val action =
+                                            LoginFragmentDirections.actionLoginFragmentToNoteListFragment(
+                                                User(splitMail)
+                                            )
                                         this.findNavController().navigate(action)
                                     }
                                 }
                             }
                         }
                 }
-            }catch (e: ApiException){
-                Toast.makeText(this.context, "Ha ocurrido un error de tipo "+e, Toast.LENGTH_SHORT).show()
+            } catch (e: ApiException) {
+                Toast.makeText(
+                    this.context,
+                    "Ha ocurrido un error de tipo " + e,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
 
-    companion object{
-        const val  RC_SIGN_IN = 1001
+    companion object {
+        const val RC_SIGN_IN = 1001
     }
 }

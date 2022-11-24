@@ -3,22 +3,23 @@ package com.example.libello.view
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import com.example.libello.R
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.example.libello.R
 import com.example.libello.databinding.FragmentEditNoteBinding
 import com.google.firebase.database.*
 
 class EditNoteFragment : Fragment() {
-    val args by navArgs<EditNoteFragmentArgs>()
+    private val args by navArgs<EditNoteFragmentArgs>()
     private var _binding: FragmentEditNoteBinding? = null
     private val binding get() = _binding!!
-    private lateinit var database_notes: DatabaseReference
-    private lateinit var database_users: DatabaseReference
-    private var text: String = "Mondongo"
+    private lateinit var databaseNotes: DatabaseReference
+    private lateinit var databaseUsers: DatabaseReference
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,18 +32,19 @@ class EditNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // TO READ DATA
-        database_notes = FirebaseDatabase.getInstance().getReference("Notes")
-        database_users = FirebaseDatabase.getInstance().getReference("Users")
+        databaseNotes = FirebaseDatabase.getInstance().getReference("Notes")
+        databaseUsers = FirebaseDatabase.getInstance().getReference("Users")
         val id = args.noteID
         val owner = args.noteOwner
         val user = args.user
         val textListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                val tempRef = snapshot.child(id)
                 binding.editTextTextMultiLine.setText(
-                    snapshot.child(id).child("Content").value.toString()
+                    tempRef.child("Content").value.toString()
                 )
-                binding.nameText.setText(snapshot.child(id).child("Title").value.toString())
-                binding.descText.setText(snapshot.child(id).child("Desc").value.toString())
+                binding.nameText.setText(tempRef.child("Title").value.toString())
+                binding.descText.setText(tempRef.child("Desc").value.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -50,15 +52,16 @@ class EditNoteFragment : Fragment() {
             }
 
         }
-        database_notes.addValueEventListener(textListener)
+        databaseNotes.addValueEventListener(textListener)
 
         // TO SAVE NEW DATA
         binding.floatingActionButton.setOnClickListener {
             try {
-                database_notes.child(id).child("Content")
+                val tempRef = databaseNotes.child(id)
+                tempRef.child("Content")
                     .setValue(binding.editTextTextMultiLine.text.toString())
-                database_notes.child(id).child("Title").setValue(binding.nameText.text.toString())
-                database_notes.child(id).child("Desc").setValue(binding.descText.text.toString())
+                tempRef.child("Title").setValue(binding.nameText.text.toString())
+                tempRef.child("Desc").setValue(binding.descText.text.toString())
                 Toast.makeText(activity, "Cambios guardados", Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
                 Toast.makeText(activity, "Ha ocurrido un error de tipo " + e, Toast.LENGTH_SHORT)
@@ -81,9 +84,9 @@ class EditNoteFragment : Fragment() {
                     //POSITIVE
                     setPositiveButton("Compartir") { dialog, which ->
                         val splitmail = editTex.text.toString().split(".")[0]
-                        database_users.child(splitmail).get().addOnSuccessListener {
+                        databaseUsers.child(splitmail).get().addOnSuccessListener {
                             if (it.exists() && splitmail != "") {
-                                database_users.child(splitmail).child("SharedKeys").child(id)
+                                databaseUsers.child(splitmail).child("SharedKeys").child(id)
                                     .setValue(id)
                                 Toast.makeText(
                                     activity,

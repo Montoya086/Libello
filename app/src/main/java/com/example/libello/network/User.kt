@@ -3,10 +3,10 @@ package com.example.libello.network
 import android.os.Parcel
 import android.os.Parcelable
 
+// Parcelable object for Fragment Navigation
 class User(private val mail: String?) : Parcelable {
 
-    constructor(parcel: Parcel) : this(parcel.readString()) {
-    }
+    constructor(parcel: Parcel) : this(parcel.readString())
 
     fun getMail(): String? {
         return mail
