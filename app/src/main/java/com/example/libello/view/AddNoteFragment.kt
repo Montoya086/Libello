@@ -64,11 +64,11 @@ class AddNoteFragment : Fragment() {
                     var temp = ""
                     when (noteType) {
                         // Market
-                        2131231082 -> temp = "MARKET"
+                        binding.radioButton1.id -> temp = "MARKET"
                         // Finance
-                        2131231083 -> temp = "FINANCE"
+                        binding.radioButton2.id -> temp = "FINANCE"
                         // Personal
-                        2131231084 -> temp = "PERSONAL"
+                        binding.radioButton3.id -> temp = "PERSONAL"
                     }
                     databaseNotes.child(currentID).child("Type").setValue(temp)
                 }
