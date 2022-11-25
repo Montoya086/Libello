@@ -1,6 +1,7 @@
 package com.example.libello.view
 
 //Librerias
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -92,6 +93,7 @@ class NoteListFragment : Fragment() {
     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.requestedOrientation= ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         noteListViewModel = ViewModelProvider(this).get(NoteListViewModel::class.java)
         binding.addNote.setOnClickListener {
             val action =

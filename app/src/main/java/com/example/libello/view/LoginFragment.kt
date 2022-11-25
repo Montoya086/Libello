@@ -2,6 +2,7 @@ package com.example.libello.view
 
 //Librerias
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -56,6 +57,7 @@ class LoginFragment : Fragment() {
     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.requestedOrientation= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         firebaseAuth = FirebaseAuth.getInstance()
         //MAIL AUTH
         binding.loginButton.setOnClickListener {

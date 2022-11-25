@@ -63,7 +63,7 @@
     <fragment
         android:id="@+id/signinFragment"
         android:name="com.example.libello.view.SigninFragment"
-        android:label="@string/labelLogin" >
+        android:label="@string/labelSignUp" >
         <action
             android:id="@+id/action_signinFragment_to_noteListFragment"
             app:destination="@id/noteListFragment" />

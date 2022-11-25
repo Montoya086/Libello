@@ -88,7 +88,7 @@
             android:height="60dp"
             android:backgroundTint="@color/googleButton"
             android:text="@string/signInFragmentGoogleSignIn"
-            android:textColor="#404040"
+            android:textColor="@color/blackText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

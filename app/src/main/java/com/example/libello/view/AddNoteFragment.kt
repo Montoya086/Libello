@@ -1,6 +1,7 @@
 package com.example.libello.view
 
 //Librerias
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,6 +52,7 @@ class AddNoteFragment : Fragment() {
     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.requestedOrientation=ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         database = FirebaseDatabase.getInstance().reference
         databaseNotes = database.child("Notes")
         databaseUsers = database.child("Users")
@@ -110,4 +112,5 @@ class AddNoteFragment : Fragment() {
 
         }
     }
+
 }

@@ -2,6 +2,7 @@ package com.example.libello.view
 
 //Librerias
 import android.app.AlertDialog
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -53,6 +54,7 @@ class EditNoteFragment : Fragment() {
     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.requestedOrientation= ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         // TO READ DATA
         databaseNotes = FirebaseDatabase.getInstance().getReference("Notes")
         databaseUsers = FirebaseDatabase.getInstance().getReference("Users")
