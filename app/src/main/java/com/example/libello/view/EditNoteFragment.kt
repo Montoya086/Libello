@@ -15,7 +15,7 @@ import com.example.libello.R
 import com.example.libello.databinding.FragmentEditNoteBinding
 import com.google.firebase.database.*
 
-/*
+/**
 *-------------------------------------------
 * EditNoteFragment
 *-------------------------------------------
@@ -32,6 +32,11 @@ class EditNoteFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var databaseNotes: DatabaseReference
     private lateinit var databaseUsers: DatabaseReference
+
+    /**
+    * onCreateView
+    * Define el Binding, inflater, container y savedInstanceState.
+    */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,7 +46,7 @@ class EditNoteFragment : Fragment() {
         return binding.root
     }
 
-    /*
+    /**
     * onViewCreated
     * Inicializa el ciclo de vida del fragment.
     * Parametros: view, savedInstance

@@ -15,7 +15,7 @@ import com.example.libello.R
 import com.example.libello.dataLayer.NoteListViewModel
 import com.example.libello.databinding.FragmentNoteListBinding
 
-/*
+/**
 *-------------------------------------------
 * NoteListFragment
 *-------------------------------------------
@@ -31,6 +31,11 @@ class NoteListFragment : Fragment() {
     private var _binding: FragmentNoteListBinding? = null
     private val binding get() = _binding!!
     private lateinit var noteListViewModel: NoteListViewModel
+
+    /**
+    * onCreateView
+    * Define el Binding, inflater, container y savedInstanceState.
+    */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -38,7 +43,7 @@ class NoteListFragment : Fragment() {
         return binding.root
     }
 
-    /*
+    /**
     * onCreate
     * Creacion de la instancia.
     * Parametros: savedInstance
@@ -48,7 +53,7 @@ class NoteListFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-    /*
+    /**
     * onCreateOPtionsMenu
     * Creacion del menu de opciones.
     * Parametros: menu, inflater
@@ -58,7 +63,7 @@ class NoteListFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    /*
+    /**
     * onOptionsItemSelected
     * Creacion de las opciones de tipo de Nota.
     * Parametros: item
@@ -80,7 +85,7 @@ class NoteListFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    /*
+    /**
     * onViewCreated
     * Inicializa el ciclo de vida del fragment.
     * Parametros: view, savedInstance
