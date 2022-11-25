@@ -1,6 +1,5 @@
 package com.example.libello.view
 
-//Librerias
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,14 +20,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-/**
-*-------------------------------------------
-* LoginFragment
-*-------------------------------------------
-* Descripción: Fragmento para el ingreso
-* de usuarios ya registrados en el sistema.
-*-------------------------------------------
-*/
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -36,10 +27,6 @@ class LoginFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
-    /**
-    * onCreateView
-    * Define el Binding, inflater, container y savedInstanceState.
-    */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,11 +36,6 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    /**
-    * onViewCreated
-    * Inicializa el ciclo de vida del fragment.
-    * Parametros: view, savedInstance
-    */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         firebaseAuth = FirebaseAuth.getInstance()
@@ -121,23 +103,12 @@ class LoginFragment : Fragment() {
         }
     }
 
-    /**
-    * onViewCreated
-    * Inicializa el ciclo de vida del fragment.
-    * Parametros: view, savedInstance
-    */
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
 
     }
 
-    /**
-    * onActivityResult
-    * Resultado del ingreso del usuario.
-    * Autenticacion de credenciales.
-    * Parametros: requestCode, resultCode, data
-    */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
