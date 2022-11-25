@@ -1,5 +1,6 @@
 package com.example.libello.view
 
+//Librerias
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,6 +14,15 @@ import com.example.libello.network.User
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
+/**
+*-------------------------------------------
+* NoteListAdapter
+*-------------------------------------------
+* Descripción: Adapter para la lista de Notas
+* mostradas al usuario en la pagina de inicio,
+* junto a toda su información.
+*-------------------------------------------
+*/
 class NoteListAdapter(
     private val noteList: MutableList<Note>,
     private val c: Context,
@@ -24,12 +34,22 @@ class NoteListAdapter(
     inner class NoteListHolder(val binding: ItemNoteViewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
+    /**
+    * onCreateViewHolder
+    * Infla la vista con la informacion de las notas.
+    * Parametros: parent, viewGroup
+    */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteListHolder {
         val binding =
             ItemNoteViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NoteListHolder(binding)
     }
 
+    /**
+    * onBindViewHolder
+    * Visualizacion y acceso de las notas.
+    * Parametros: holder, position
+    */
     override fun onBindViewHolder(holder: NoteListHolder, position: Int) {
         val note = noteList[position]
         database = FirebaseDatabase.getInstance().reference
@@ -85,6 +105,9 @@ class NoteListAdapter(
         }
     }
 
+    /**
+    * onBindViewHolder
+    * Devuelve el tamanio de la lista, el numero de notas.
+    */
     override fun getItemCount() = noteList.size
-
 }

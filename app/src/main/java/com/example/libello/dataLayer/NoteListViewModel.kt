@@ -1,10 +1,20 @@
 package com.example.libello.dataLayer
 
+//Librerias
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.libello.network.User
 import com.google.firebase.database.*
 
+/**
+*-------------------------------------------
+* NoteListViewModel
+*-------------------------------------------
+* Descripción: Lista de notas.
+* Caracteristicas de las notas
+* (accesibles por el usuario).
+*-------------------------------------------
+*/
 class NoteListViewModel : ViewModel() {
     lateinit var database: DatabaseReference
     val notes: MutableLiveData<MutableList<Note>> by lazy {

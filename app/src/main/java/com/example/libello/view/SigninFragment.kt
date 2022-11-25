@@ -1,5 +1,6 @@
 package com.example.libello.view
 
+//Librerias
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,6 +21,14 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
+/**
+*-------------------------------------------
+* SigninFragment
+*-------------------------------------------
+* Descripción: Fragmento para el registro
+* de nuevos usuarios.
+*-------------------------------------------
+*/
 class SigninFragment : Fragment() {
     private var _binding: FragmentSigninBinding? = null
     private val binding get() = _binding!!
@@ -27,6 +36,10 @@ class SigninFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
+    /**
+    * onCreateView
+    * Define el Binding, inflater, container y savedInstanceState.
+    */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +49,11 @@ class SigninFragment : Fragment() {
         return binding.root
     }
 
+    /**
+    * onViewCreated
+    * Inicializa el ciclo de vida del fragment.
+    * Parametros: view, savedInstance
+    */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         firebaseAuth = FirebaseAuth.getInstance()
@@ -109,23 +127,35 @@ class SigninFragment : Fragment() {
         }
     }
 
+    /**
+    * sendEmailVerification
+    * Realiza un envio de confirmacion al correo electronico ingresado
+    * por el usuario.
+    */
     private fun sendEmailVerification() {
         val user = firebaseAuth.currentUser!!
         user.sendEmailVerification().addOnCompleteListener { task ->
             if (task.isSuccessful) {
-
             } else {
-
             }
-
         }
     }
 
+    /**
+    * signIn
+    * Ingreso del usuario automatico cuando ya ha sido registrado.
+    */
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
+    /**
+    * onActivityResult
+    * Resultado del ingreso del usuario.
+    * Autenticacion de credenciales.
+    * Parametros: requestCode, resultCode, data
+    */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
